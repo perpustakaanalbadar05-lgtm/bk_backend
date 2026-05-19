@@ -10,7 +10,8 @@ class CounselingSession extends Model
     use HasFactory;
 
     protected $fillable = [
-        'siswa', 'kelas', 'tanggal', 'topik', 'jenis', 'status', 'durasi', 'signature'
+        'siswa', 'kelas', 'tanggal', 'topik', 'jenis',
+        'status', 'durasi', 'ringkasan', 'signature'
     ];
 
     protected $casts = [
