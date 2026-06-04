@@ -12,13 +12,10 @@ class Kasus extends Model
     protected $table = 'cases';
 
     protected $fillable = [
-        'siswa', 'kelas', 'kasus', 'poin', 'status', 'visit', 'konseling', 'panggilan', 'date'
+        'siswa', 'kelas', 'kasus', 'poin', 'status', 'visit', 'date'
     ];
 
     protected $casts = [
-        'poin' => 'integer',
         'visit' => 'boolean',
-        'konseling' => 'boolean',
-        'panggilan' => 'boolean',
     ];
 }

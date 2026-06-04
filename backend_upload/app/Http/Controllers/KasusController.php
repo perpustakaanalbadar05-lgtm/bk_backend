@@ -21,8 +21,6 @@ class KasusController extends Controller
             'poin'   => 'required|integer|min:0|max:100',
             'status' => 'required|in:Proses,Selesai,Terjadwal',
             'visit'  => 'boolean',
-            'konseling' => 'boolean',
-            'panggilan' => 'boolean',
             'date'   => 'required|string',
         ]);
 
@@ -44,8 +42,6 @@ class KasusController extends Controller
             'poin'   => 'sometimes|required|integer|min:0|max:100',
             'status' => 'sometimes|required|in:Proses,Selesai,Terjadwal',
             'visit'  => 'boolean',
-            'konseling' => 'boolean',
-            'panggilan' => 'boolean',
             'date'   => 'sometimes|required|string',
         ]);
 
