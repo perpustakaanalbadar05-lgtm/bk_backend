@@ -18,8 +18,8 @@ class Student extends Model
         return $this->hasMany(CounselingSession::class);
     }
 
-    public function cases()
+    public function kasus()
     {
-        return $this->hasMany(Cases::class);
+        return $this->hasMany(Kasus::class);
     }
 }
