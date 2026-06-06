@@ -21,6 +21,6 @@ Route::middleware([ApiAuth::class])->group(function () {
     // Full CRUD resources
     Route::apiResource('students', StudentController::class);
     Route::apiResource('sessions', CounselingSessionController::class);
-    Route::apiResource('kasus', KasusController::class);
+    Route::apiResource('kasus', KasusController::class)->parameters(['kasus' => 'kasus']);
     Route::apiResource('schedules', ScheduleController::class);
 });
