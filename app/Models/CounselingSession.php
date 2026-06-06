@@ -10,11 +10,16 @@ class CounselingSession extends Model
     use HasFactory;
 
     protected $fillable = [
-        'siswa', 'kelas', 'tanggal', 'topik', 'jenis',
+        'student_id', 'kelas', 'tanggal', 'topik', 'jenis',
         'status', 'durasi', 'ringkasan', 'signature'
     ];
 
     protected $casts = [
         'signature' => 'boolean',
     ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

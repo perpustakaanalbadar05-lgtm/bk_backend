@@ -12,7 +12,7 @@ class Kasus extends Model
     protected $table = 'cases';
 
     protected $fillable = [
-        'siswa', 'kelas', 'kasus', 'poin', 'status', 'visit', 'konseling', 'panggilan', 'date'
+        'student_id', 'kelas', 'kasus', 'poin', 'status', 'visit', 'konseling', 'panggilan', 'date'
     ];
 
     protected $casts = [
@@ -21,4 +21,9 @@ class Kasus extends Model
         'konseling' => 'boolean',
         'panggilan' => 'boolean',
     ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

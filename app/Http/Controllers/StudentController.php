@@ -9,7 +9,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        return response()->json(Student::orderBy('created_at', 'desc')->get());
+        return response()->json(Student::withCount('counselingSessions')->orderBy('created_at', 'desc')->get());
     }
 
     public function store(Request $request)
@@ -30,7 +30,7 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
-        return response()->json($student);
+        return response()->json($student->loadCount('counselingSessions'));
     }
 
     public function update(Request $request, Student $student)
@@ -43,7 +43,6 @@ class StudentController extends Controller
             'status'    => 'sometimes|required|in:Aktif,Perhatian,Alumni',
             'hp'        => 'nullable|string|max:20',
             'alamat'    => 'nullable|string',
-            'konseling' => 'sometimes|integer|min:0',
         ]);
 
         $student->update($validated);

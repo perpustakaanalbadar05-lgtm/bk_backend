@@ -9,13 +9,13 @@ class KasusController extends Controller
 {
     public function index()
     {
-        return response()->json(Kasus::orderBy('created_at', 'desc')->get());
+        return response()->json(Kasus::with('student')->orderBy('created_at', 'desc')->get());
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'siswa'  => 'required|string|max:255',
+            'student_id'=> 'required|exists:students,id',
             'kelas'  => 'required|string|max:50',
             'kasus'  => 'required|string',
             'poin'   => 'required|integer|min:0|max:100',
@@ -32,13 +32,13 @@ class KasusController extends Controller
 
     public function show(Kasus $kasus)
     {
-        return response()->json($kasus);
+        return response()->json($kasus->load('student'));
     }
 
     public function update(Request $request, Kasus $kasus)
     {
         $validated = $request->validate([
-            'siswa'  => 'sometimes|required|string|max:255',
+            'student_id'=> 'sometimes|required|exists:students,id',
             'kelas'  => 'sometimes|required|string|max:50',
             'kasus'  => 'sometimes|required|string',
             'poin'   => 'sometimes|required|integer|min:0|max:100',

@@ -9,13 +9,13 @@ class CounselingSessionController extends Controller
 {
     public function index()
     {
-        return response()->json(CounselingSession::orderBy('created_at', 'desc')->get());
+        return response()->json(CounselingSession::with('student')->orderBy('created_at', 'desc')->get());
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'siswa'     => 'required|string|max:255',
+            'student_id'=> 'required|exists:students,id',
             'kelas'     => 'required|string|max:50',
             'tanggal'   => 'required|string',
             'topik'     => 'required|string|max:255',
@@ -32,13 +32,13 @@ class CounselingSessionController extends Controller
 
     public function show(CounselingSession $session)
     {
-        return response()->json($session);
+        return response()->json($session->load('student'));
     }
 
     public function update(Request $request, CounselingSession $session)
     {
         $validated = $request->validate([
-            'siswa'     => 'sometimes|required|string|max:255',
+            'student_id'=> 'sometimes|required|exists:students,id',
             'kelas'     => 'sometimes|required|string|max:50',
             'tanggal'   => 'sometimes|required|string',
             'topik'     => 'sometimes|required|string|max:255',
