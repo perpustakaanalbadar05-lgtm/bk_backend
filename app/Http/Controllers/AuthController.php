@@ -24,10 +24,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $token = Str::random(60);
-        $user->forceFill([
-            'api_token' => hash('sha256', $token),
-        ])->save();
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'token' => $token,
@@ -44,9 +41,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         if ($request->user()) {
-            $request->user()->forceFill([
-                'api_token' => null,
-            ])->save();
+            $request->user()->currentAccessToken()->delete();
         }
         return response()->json(['message' => 'Berhasil logout.']);
     }
