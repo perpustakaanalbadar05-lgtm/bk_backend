@@ -18,6 +18,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
     Route::put('/user', [AuthController::class, 'updateProfile']);
     Route::post('/auth/change-password', [AuthController::class, 'changePassword']);
+    Route::get('/notifications', [\App\Http\Controllers\NotificationController::class, 'index']);
 
     // Full CRUD resources
     Route::post('students/bulk', [StudentController::class, 'bulkStore']);

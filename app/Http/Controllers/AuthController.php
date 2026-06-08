@@ -32,9 +32,10 @@ class AuthController extends Controller
                 'id'    => $user->id,
                 'name'  => $user->name,
                 'email' => $user->email,
-                'nip'   => $user->nip,
-                'hp'    => $user->hp,
-                'role'  => $user->role,
+                'nip'      => $user->nip,
+                'hp'       => $user->hp,
+                'role'     => $user->role,
+                'settings' => $user->settings ?? [],
             ]
         ]);
     }
@@ -54,9 +55,10 @@ class AuthController extends Controller
             'id'    => $user->id,
             'name'  => $user->name,
             'email' => $user->email,
-            'nip'   => $user->nip,
-            'hp'    => $user->hp,
-            'role'  => $user->role,
+            'nip'      => $user->nip,
+            'hp'       => $user->hp,
+            'role'     => $user->role,
+            'settings' => $user->settings ?? [],
         ]);
     }
 
@@ -65,10 +67,11 @@ class AuthController extends Controller
         $user = $request->user();
 
         $validated = $request->validate([
-            'name'  => 'sometimes|required|string|max:255',
-            'email' => 'sometimes|required|email|unique:users,email,' . $user->id,
-            'nip'   => 'nullable|string|max:30',
-            'hp'    => 'nullable|string|max:20',
+            'name'     => 'sometimes|required|string|max:255',
+            'email'    => 'sometimes|required|email|unique:users,email,' . $user->id,
+            'nip'      => 'nullable|string|max:30',
+            'hp'       => 'nullable|string|max:20',
+            'settings' => 'nullable|array',
         ]);
 
         $user->update($validated);
@@ -79,9 +82,10 @@ class AuthController extends Controller
                 'id'    => $user->id,
                 'name'  => $user->name,
                 'email' => $user->email,
-                'nip'   => $user->nip,
-                'hp'    => $user->hp,
-                'role'  => $user->role,
+                'nip'      => $user->nip,
+                'hp'       => $user->hp,
+                'role'     => $user->role,
+                'settings' => $user->settings ?? [],
             ]
         ]);
     }
