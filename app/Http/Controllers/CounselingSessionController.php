@@ -9,7 +9,7 @@ class CounselingSessionController extends Controller
 {
     public function index()
     {
-        return response()->json(CounselingSession::with('student')->orderBy('created_at', 'desc')->get());
+        return response()->json(CounselingSession::with('student:id,nama,nis,kelas')->orderBy('created_at', 'desc')->get());
     }
 
     public function store(Request $request)

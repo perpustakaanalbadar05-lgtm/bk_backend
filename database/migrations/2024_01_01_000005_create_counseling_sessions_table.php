@@ -10,13 +10,14 @@ return new class extends Migration
     {
         Schema::create('counseling_sessions', function (Blueprint $table) {
             $table->id();
-            $table->string('siswa');
+            $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
             $table->string('kelas');
             $table->string('tanggal');
             $table->string('topik');
             $table->string('jenis');
             $table->string('status');
             $table->string('durasi')->nullable();
+            $table->text('ringkasan')->nullable();
             $table->boolean('signature')->default(false);
             $table->timestamps();
         });

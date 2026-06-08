@@ -14,8 +14,7 @@ return new class extends Migration
             $table->string('nis')->unique();
             $table->string('kelas');
             $table->enum('jk', ['L', 'P']);
-            $table->enum('status', ['Aktif', 'Perhatian']);
-            $table->integer('konseling')->default(0);
+            $table->string('status')->default('Aktif');
             $table->string('hp')->nullable();
             $table->text('alamat')->nullable();
             $table->timestamps();

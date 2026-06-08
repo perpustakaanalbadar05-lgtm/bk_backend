@@ -28,6 +28,31 @@ class StudentController extends Controller
         return response()->json($student, 201);
     }
 
+    public function bulkStore(Request $request)
+    {
+        $validated = $request->validate([
+            'students' => 'required|array',
+            'students.*.nama'   => 'required|string|max:255',
+            'students.*.nis'    => 'required|string|distinct|unique:students,nis',
+            'students.*.kelas'  => 'required|string|max:50',
+            'students.*.jk'     => 'required|in:L,P',
+            'students.*.status' => 'required|in:Aktif,Perhatian,Alumni',
+            'students.*.hp'     => 'nullable|string|max:20',
+            'students.*.alamat' => 'nullable|string',
+        ]);
+
+        $students = [];
+        foreach ($validated['students'] as $studentData) {
+            $studentData['created_at'] = now();
+            $studentData['updated_at'] = now();
+            $students[] = $studentData;
+        }
+
+        Student::insert($students);
+
+        return response()->json(['message' => count($students) . ' students imported successfully'], 201);
+    }
+
     public function show(Student $student)
     {
         return response()->json($student->loadCount('counselingSessions'));

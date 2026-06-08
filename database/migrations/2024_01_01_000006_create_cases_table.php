@@ -10,12 +10,14 @@ return new class extends Migration
     {
         Schema::create('cases', function (Blueprint $table) {
             $table->id();
-            $table->string('siswa');
+            $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
             $table->string('kelas');
             $table->text('kasus');
             $table->integer('poin');
             $table->string('status');
             $table->boolean('visit')->default(false);
+            $table->boolean('konseling')->default(false);
+            $table->boolean('panggilan')->default(false);
             $table->string('date');
             $table->timestamps();
         });
