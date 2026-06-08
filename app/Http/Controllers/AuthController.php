@@ -34,6 +34,7 @@ class AuthController extends Controller
                 'email' => $user->email,
                 'nip'   => $user->nip,
                 'hp'    => $user->hp,
+                'role'  => $user->role,
             ]
         ]);
     }
@@ -55,6 +56,7 @@ class AuthController extends Controller
             'email' => $user->email,
             'nip'   => $user->nip,
             'hp'    => $user->hp,
+            'role'  => $user->role,
         ]);
     }
 
@@ -79,6 +81,7 @@ class AuthController extends Controller
                 'email' => $user->email,
                 'nip'   => $user->nip,
                 'hp'    => $user->hp,
+                'role'  => $user->role,
             ]
         ]);
     }

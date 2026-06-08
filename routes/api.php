@@ -25,4 +25,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('sessions', CounselingSessionController::class);
     Route::apiResource('kasus', KasusController::class)->parameters(['kasus' => 'kasus']);
     Route::apiResource('schedules', ScheduleController::class);
+
+    // Super Admin Routes
+    Route::prefix('super-admin')->group(function () {
+        Route::get('dashboard', [\App\Http\Controllers\SuperAdminController::class, 'dashboardStats']);
+        Route::get('guru-bk', [\App\Http\Controllers\SuperAdminController::class, 'getGuruBk']);
+        Route::post('guru-bk', [\App\Http\Controllers\SuperAdminController::class, 'storeGuruBk']);
+        Route::put('guru-bk/{id}', [\App\Http\Controllers\SuperAdminController::class, 'updateGuruBk']);
+        Route::delete('guru-bk/{id}', [\App\Http\Controllers\SuperAdminController::class, 'deleteGuruBk']);
+    });
 });

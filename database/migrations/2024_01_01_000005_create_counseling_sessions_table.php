@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('counseling_sessions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
             $table->string('kelas');
             $table->string('tanggal');

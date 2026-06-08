@@ -42,9 +42,11 @@ class StudentController extends Controller
         ]);
 
         $students = [];
+        $userId = auth()->id();
         foreach ($validated['students'] as $studentData) {
-            $studentData['created_at'] = now();
-            $studentData['updated_at'] = now();
+            $studentData['user_id'] = $userId;
+            $studentData['created_at'] = now()->toDateTimeString();
+            $studentData['updated_at'] = now()->toDateTimeString();
             $students[] = $studentData;
         }
 
