@@ -8,12 +8,16 @@ use App\Http\Controllers\KasusController;
 use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AssessmentTemplateController;
 
 // Public routes
 Route::post('/auth/login', [AuthController::class, 'login']);
+Route::get('/public/assessment-templates/{userId}/{type}', [AssessmentTemplateController::class, 'getPublicTemplate']);
 
 // Protected routes
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/assessment-templates/{type}', [AssessmentTemplateController::class, 'getTemplate']);
+    Route::post('/assessment-templates/{type}', [AssessmentTemplateController::class, 'saveTemplate']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
     Route::put('/user', [AuthController::class, 'updateProfile']);
