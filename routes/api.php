@@ -16,6 +16,8 @@ use App\Http\Controllers\PortalAccountController;
 // ── Public routes ──────────────────────────────────────────────────────────
 Route::post('/auth/login', [AuthController::class, 'login']);
 Route::get('/public/assessment-templates/{userId}/{type}', [AssessmentTemplateController::class, 'getPublicTemplate']);
+Route::get('/public/assessment-results/{userId}/{type}', [AssessmentResultController::class, 'publicShow']);
+Route::post('/public/assessment-results/{userId}/{type}', [AssessmentResultController::class, 'publicSubmit']);
 
 // Portal login (public — no auth needed)
 Route::post('/portal/login', [PortalAccountController::class, 'login']);

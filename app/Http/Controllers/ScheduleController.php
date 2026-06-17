@@ -18,9 +18,14 @@ class ScheduleController extends Controller
             'class'    => 'required|string|max:50',
             'topic'    => 'required|string|max:255',
             'time'     => 'required|string|max:100',
+            'date'     => 'nullable|string|max:50',
+            'materi'   => 'nullable|string|max:255',
+            'metode'   => 'nullable|string|max:255',
+            'catatan'  => 'nullable|string',
             'status'   => 'required|in:Terjadwal,Berlangsung,Selesai',
             'attended' => 'nullable|integer|min:0',
             'total'    => 'nullable|integer|min:0',
+            'attendance_data' => 'nullable|array',
         ]);
 
         $schedule = Schedule::create($validated);
@@ -38,9 +43,14 @@ class ScheduleController extends Controller
             'class'    => 'sometimes|required|string|max:50',
             'topic'    => 'sometimes|required|string|max:255',
             'time'     => 'sometimes|required|string|max:100',
+            'date'     => 'nullable|string|max:50',
+            'materi'   => 'nullable|string|max:255',
+            'metode'   => 'nullable|string|max:255',
+            'catatan'  => 'nullable|string',
             'status'   => 'sometimes|required|in:Terjadwal,Berlangsung,Selesai',
             'attended' => 'nullable|integer|min:0',
             'total'    => 'nullable|integer|min:0',
+            'attendance_data' => 'nullable|array',
         ]);
 
         $schedule->update($validated);

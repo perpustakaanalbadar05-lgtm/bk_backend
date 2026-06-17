@@ -11,6 +11,11 @@ class Schedule extends Model
     use HasFactory, Tenantable;
 
     protected $fillable = [
-        'class', 'topic', 'time', 'status', 'attended', 'total'
+        'class', 'topic', 'time', 'status', 'attended', 'total',
+        'date', 'materi', 'metode', 'catatan', 'attendance_data'
+    ];
+
+    protected $casts = [
+        'attendance_data' => 'array',
     ];
 }

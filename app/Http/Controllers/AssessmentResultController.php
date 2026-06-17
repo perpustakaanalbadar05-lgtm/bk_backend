@@ -29,7 +29,7 @@ class AssessmentResultController extends Controller
     public function save(Request $request, string $type)
     {
         $request->validate([
-            'result_data' => 'required|array',
+            'result_data' => 'nullable|array',
         ]);
 
         $result = AssessmentResult::updateOrCreate(
@@ -71,5 +71,25 @@ class AssessmentResultController extends Controller
         }
 
         return response()->json($result->result_data);
+    }
+
+    /**
+     * Public endpoint: save assessment result from student portal.
+     */
+    public function publicSubmit(Request $request, string $userId, string $type)
+    {
+        $request->validate([
+            'result_data' => 'required',
+        ]);
+
+        $result = AssessmentResult::updateOrCreate(
+            ['user_id' => $userId, 'type' => $type],
+            ['result_data' => $request->result_data]
+        );
+
+        return response()->json([
+            'message' => 'Hasil asesmen mandiri berhasil disinkronisasi.',
+            'data' => $result->result_data,
+        ]);
     }
 }
