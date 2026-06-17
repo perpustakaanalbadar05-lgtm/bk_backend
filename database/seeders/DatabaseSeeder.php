@@ -49,5 +49,10 @@ class DatabaseSeeder extends Seeder
         \App\Models\Schedule::create(['user_id' => $guruBk->id, 'class' => 'XI IPA 2', 'topic' => 'Strategi Sukses Ujian', 'date' => '2026-06-08', 'time' => '08:00', 'status' => 'Selesai', 'attended' => 32, 'total' => 34, 'materi' => 'Strategi kognitif untuk ujian']);
         \App\Models\Schedule::create(['user_id' => $guruBk->id, 'class' => 'X IPS 1', 'topic' => 'Bahaya Bullying', 'date' => '2026-06-09', 'time' => '10:30', 'status' => 'Berlangsung', 'attended' => 0, 'total' => 36, 'materi' => 'Dampak psikologis dari bullying']);
         \App\Models\Schedule::create(['user_id' => $guruBk->id, 'class' => 'XII IPA 1', 'topic' => 'Orientasi Perguruan Tinggi', 'date' => '2026-06-10', 'time' => '13:00', 'status' => 'Terjadwal', 'attended' => 0, 'total' => 35, 'materi' => 'Memilih jurusan sesuai minat']);
+        
+        // Custom Assessment Templates
+        $this->call(AssessmentTemplateSeeder::class);
+        $this->call(AssessmentTemplateBakatMinatSeeder::class);
+        $this->call(AssessmentTemplateGayaBelajarSeeder::class);
     }
 }
