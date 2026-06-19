@@ -69,7 +69,7 @@ class PortalAccountController extends Controller
      */
     public function update(Request $request, PortalAccount $portalAccount)
     {
-        if ($portalAccount->user_id !== $request->user()->id) {
+        if ($portalAccount->user_id != $request->user()->id) {
             return response()->json(['message' => 'Forbidden'], 403);
         }
 
@@ -103,7 +103,7 @@ class PortalAccountController extends Controller
      */
     public function destroy(Request $request, PortalAccount $portalAccount)
     {
-        if ($portalAccount->user_id !== $request->user()->id) {
+        if ($portalAccount->user_id != $request->user()->id) {
             return response()->json(['message' => 'Forbidden'], 403);
         }
 

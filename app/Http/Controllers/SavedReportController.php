@@ -41,14 +41,14 @@ class SavedReportController extends Controller
     /**
      * Delete a saved report.
      */
-    public function destroy(Request $request, SavedReport $report)
+    public function destroy(Request $request, SavedReport $savedReport)
     {
         // Ensure user owns this report
-        if ($report->user_id !== $request->user()->id) {
+        if ($savedReport->user_id != $request->user()->id) {
             return response()->json(['message' => 'Forbidden'], 403);
         }
 
-        $report->delete();
+        $savedReport->delete();
         return response()->json(['message' => 'Laporan berhasil dihapus.']);
     }
 }
